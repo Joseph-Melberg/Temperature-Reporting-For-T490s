@@ -27,7 +27,7 @@ outbound["Timestamp"] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
 outbound["Temperatures"] = temps
 print(outbound)
 credentials = pika.PlainCredentials('tempy','celsius')
-connection = pika.BlockingConnection(pika.ConnectionParameters('centurionx.net',5672,'/',credentials))
+connection = pika.BlockingConnection(pika.ConnectionParameters('rancher.centurionx.net',5672,'/',credentials))
 channel = connection.channel()
 channel.exchange_declare(exchange='InterTopic',exchange_type='topic',durable=True)
 channel.queue_bind(exchange='InterTopic',queue='Temperature',routing_key='temperature.*')
